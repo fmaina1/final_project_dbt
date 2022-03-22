@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+    - names: staging
+      database: shoemaker-datazoomcamp
+      schema: divvy_trips_data
+
+      tables:
+        - name: divvy_rides_all

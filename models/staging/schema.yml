@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-    - names: staging
+    - name: staging
       database: shoemaker-datazoomcamp
       schema: divvy_trips_data
 

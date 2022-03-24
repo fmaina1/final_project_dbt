@@ -1,4 +1,4 @@
 {{ config(materialized='view') }}
 
 SELECT *
-FROM {{ source('staging','divvy_rides_all')}}
+FROM {{ source('staging','external_divvy_data')}}

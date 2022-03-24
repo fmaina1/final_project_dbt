@@ -6,4 +6,4 @@ sources:
       schema: divvy_trips_data
 
       tables:
-        - name: divvy_rides_all
+        - name: external_divvy_data

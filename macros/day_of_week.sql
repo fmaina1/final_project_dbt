@@ -10,3 +10,9 @@
     FORMAT_DATE('%A', DATE(ended_at))
 
 {%- endmacro %}
+
+
+{% macro test(start_lat) -%}
+    start_lat + 1
+
+{%- endmacro %}

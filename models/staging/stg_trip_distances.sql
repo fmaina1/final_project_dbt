@@ -7,7 +7,8 @@ SELECT ride_id
 ,ended_at
 ,start_station_name
 ,end_station_name
-{{ dbt_utils.haversine_distance(start_lat, start_lon, end_lat, end_lon) }} as HaversineDist
+,{{ test(start_lat) }}
+,{{ dbt_utils.bigquery__haversine_distance(lat1=start_lat, lon1=start_lng, lat2=end_lat, lon2=end_lng, unit='mi') }} as HaversineDist
 FROM {{ source('staging','external_divvy_data')}}
 WHERE start_station_name is not null
 and end_station_name is not null

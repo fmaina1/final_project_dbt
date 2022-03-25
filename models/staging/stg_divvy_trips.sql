@@ -2,6 +2,7 @@
 
 SELECT ride_id
 ,rideable_type
+,member_casual
 ,started_at
 ,ended_at
 ,start_station_name

@@ -10,7 +10,7 @@ models:
           - name: ride_id
             description: Unique identifier for each Divvy Bike Rental
             tests:
-                -unique:
+                - unique:
                     severity: warn
                 - not_null:
                     severity: warn
@@ -38,38 +38,11 @@ models:
       columns:
           - name: trip_count
             description: Number of trips taken on the day.
+          - name: member_casual
+            description: A code indicating if the rider is a member or paid with credit card
+              <br>member = Divvy Member
+              <br>casual = Paid with Credit Card
           - name: day
             description: Day of the week
 
-    - name: stg_long_rides
-      description: >
-        Table contianing trips where the ended_at datetime is greater than 18 hours from
-        the started_at datetime.
-      columns:
-        - name: ride_id
-          description: Unique identifier for each Divvy Bike Rental
-          tests:
-              - not_null:
-                  severity: warn
-        - name: rideable_type
-          description: test
-        - name: member_casual 
-          description:  
-              A code indicating if the rider is a member or paid with credit card
-              member = Divvy Member
-              casual = Paid with Credit Card
-        - name: started_at 
-          description: The date and time when the bike was rented.
-        - name: ended_at 
-          description: The date and time when bike was returned to a docking station.
-        - name: start_station_name
-          description: Name of the docking station the bike was rented from.
-        - name: end_station_name
-          description: Name of the docking station the bike was returned to.
-        - name: start_day
-          description: Day of the week the trip was started on
-        - name: end_day
-          description: Day of the week the trip ended on
-
-
-
+ 

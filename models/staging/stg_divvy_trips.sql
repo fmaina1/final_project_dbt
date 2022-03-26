@@ -9,6 +9,6 @@ SELECT ride_id
 ,end_station_name
 ,{{ start_date_to_day(started_at) }} as start_day
 ,{{ end_date_to_day(ended_at) }} as end_day
-FROM {{ source('staging','external_divvy_data')}}
+FROM {{ source('staging','divvy_data_partitioned')}}
 WHERE start_station_name is not null
 and end_station_name is not null

@@ -7,8 +7,11 @@ SELECT ride_id
 ,ended_at
 ,start_station_name
 ,end_station_name
-,{{ test(start_lat) }}
-,{{ dbt_utils.bigquery__haversine_distance(lat1=start_lat, lon1=start_lng, lat2=end_lat, lon2=end_lng, unit='mi') }} as HaversineDist
+,date_diff(ended_at, started_at, MINUTE) as duration_mnts
+,date_diff(ended_at, started_at, HOUR) as duration_hrs
+,start_day
+,end_day
 FROM {{ source('staging','external_divvy_data')}}
 WHERE start_station_name is not null
 and end_station_name is not null
+and date_diff(ended_at, started_at, HOUR) > 18

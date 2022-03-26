@@ -1,25 +1,17 @@
 version: 2
 
-sources:
-    - name: staging
-      database: shoemaker-datazoomcamp
-      schema: divvy_trips_data
-
-      tables:
-        - name: external_divvy_data
-        - name: divvy_data_partitioned 
-
-
 models:
-    - name: stg_divvy_trips
+    - name: fact_divvy_rides
       description: >
-        Divvy ride trips from 4/1/2020 through the previous month. Any records with a blank start_station_name
+        Unique divvy ride trips from 4/1/2020 through the previous month. Any records with a blank start_station_name
         or end_station_name have been removed. This model also excludes the columns for start_station_id and 
         end_station_id.
       columns:
           - name: ride_id
             description: Unique identifier for each Divvy Bike Rental
             tests:
+                -unique:
+                    severity: warn
                 - not_null:
                     severity: warn
           - name: rideable_type 
@@ -40,15 +32,14 @@ models:
           - name: end_day
             description: Day of the week the trip ended on
 
-    - name: stg_stations
+    - name: divvy_trips_by_day
       description: > 
-        Table containing unique station names.
+        Aggregated counts of trips perday over entire dataset
       columns:
-          - name: StationName
-            description: Name of the Divvy Bike Station.
-            tests:
-              - unique:
-                  severity: warn
+          - name: trip_count
+            description: Number of trips taken on the day.
+          - name: day
+            description: Day of the week
 
     - name: stg_long_rides
       description: >
